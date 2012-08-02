@@ -6,7 +6,7 @@ import org.wiltzu.foodrandomizer.service.foodlistprovider.ResourceHelper.Resourc
 
 public interface FoodListProvider {
 	
-	public void setFilePath(String path);
+	public void setLocation(String location);
 	public void setResourceLoaderHelper(ResourceLoaderHelper rsLoaderHelper);
 	public List<String> getFoodList();
 }

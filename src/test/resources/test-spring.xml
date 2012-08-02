@@ -14,7 +14,12 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
 	<bean name="foodListFileProvider" class="org.wiltzu.foodrandomizer.service.foodlistprovider.SimpleFileFoodListProvider">
-	    <property name="filePath" value="./pizzafillingsTEST.txt"/>
+	    <property name="location" value="./pizzafillingsTEST.txt"/>
+	    <property name="resourceLoaderHelper" ref="resourceLoaderHelper"/>
+	</bean>
+		
+	<bean name="studentFoodListProvider" class="org.wiltzu.foodrandomizer.service.foodlistprovider.StudentHTMLFoodListProvider">
+		<property name="location" value="http://murkinat.appspot.com"/>
 	    <property name="resourceLoaderHelper" ref="resourceLoaderHelper"/>
 	</bean>
 	
