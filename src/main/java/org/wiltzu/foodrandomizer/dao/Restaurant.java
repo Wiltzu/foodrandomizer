@@ -1,11 +1,11 @@
 package org.wiltzu.foodrandomizer.dao;
 
-import java.util.Set;
+import java.util.List;
 
 public class Restaurant {
 
 	String name;
-	Set<Meal> meals;
+	List<Meal> meals;
 	
 	
 	public String getName() {
@@ -14,10 +14,10 @@ public class Restaurant {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Set<Meal> getMeals() {
+	public List<Meal> getMeals() {
 		return meals;
 	}
-	public void setMeals(Set<Meal> meals) {
+	public void setMeals(List<Meal> meals) {
 		this.meals = meals;
 	}
 }
