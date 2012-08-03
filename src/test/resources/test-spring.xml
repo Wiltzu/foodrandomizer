@@ -13,8 +13,7 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 		
-    <!-- <context:component-scan base-package="org.wiltzu.foodrandomizer" />
- -->
+
 	<bean name="foodListFileProvider" class="org.wiltzu.foodrandomizer.service.foodlistprovider.SimpleFileFoodListProvider">
 	    <property name="location" value="./pizzafillingsTEST.txt"/>
 	    <property name="resourceLoaderHelper" ref="resourceLoaderHelper"/>

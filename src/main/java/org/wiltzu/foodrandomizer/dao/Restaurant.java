@@ -25,4 +25,22 @@ public class Restaurant {
 	private void setMeals(List<Meal> meals) {
 		this.meals = meals;
 	}
+	
+	public String getMealAsText (Meal meal) {
+		Meal searchedMeal = meals.get(meals.indexOf(meal));
+		return searchedMeal.toString() + " (" + this.name + ")";
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		
+		for(Meal meal : meals) {
+			builder.append(meal + "\n");
+		}
+		
+		return name;
+	}
+	
+	
 }
