@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,24 +19,30 @@ public class StudentRestaurantHTMLMapper implements HTMLMapper<Restaurant> {
 	private static final String RESTAURANT_CLASS = "restaurant";
 	private static final String RESTAURANT_NAME_CLASS = "restaurantName";
 	private static final String MEALS_CLASS = "meals";
+	private static final String MEAL_NAME_CLASS = "mealName";
+	private static final String MEAL_PRICE_CLASS = "mealPrice";
 	
 	@Override
-	public Restaurant[] mapHTML(URL url) {
+	public List<Restaurant> mapHTML(URL url) {
 		
-		List<String> rNameList = new ArrayList<String>();
+		String rName;
+		List<Restaurant> restaurantList = new ArrayList<Restaurant>();;
 		
 		try {
 			doc = Jsoup.parse(url, HTMLMapper.CONNECTION_TIMEOUT);
 			Elements restaurants = getRestaurants();
 			
 			for(Element restaurant: restaurants) {
-				rNameList.add(getRestaurantName(restaurant));
+				rName = getRestaurantName(restaurant);
 				List<Meal> meals = getMeals(restaurant);
-				
-			}
+				Restaurant restaurantInstance = new Restaurant(rName, meals);
+				restaurantList.add(restaurantInstance);
+			}	
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return restaurantList;
 	}
 
 	private Elements getRestaurants() {
@@ -67,14 +72,14 @@ public class StudentRestaurantHTMLMapper implements HTMLMapper<Restaurant> {
 
 	private String getMealName(Element meal) {
 		
-		Elements mealNames = meal.getElementsByClass("mealName");
+		Elements mealNames = meal.getElementsByClass(StudentRestaurantHTMLMapper.MEAL_NAME_CLASS);
 		Element mealName = mealNames.get(0);
 		
 		return mealName.text();
 	}
 	
 	private String getMealPrice(Element meal) {
-		Elements mealPrices = meal.getElementsByClass("mealPrice");
+		Elements mealPrices = meal.getElementsByClass(StudentRestaurantHTMLMapper.MEAL_PRICE_CLASS);
 		Element mealPrice = mealPrices.get(0);
 		
 		return mealPrice.text();
