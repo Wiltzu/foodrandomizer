@@ -42,6 +42,7 @@
 	</bean>
 	
 	<bean name="pizzaFoodRandomizerServiceEmpty" class="org.wiltzu.foodrandomizer.service.PizzaFoodRandomizerService">
+		<property name="foodListProvider" ref="foodListFileProvider"/>
 	</bean>
 	
 	<bean name = "studentRestaurantHTMLMapper" 
