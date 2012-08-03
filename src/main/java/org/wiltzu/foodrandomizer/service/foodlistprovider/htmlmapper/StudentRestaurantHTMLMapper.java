@@ -80,9 +80,11 @@ public class StudentRestaurantHTMLMapper implements HTMLMapper<Restaurant> {
 	
 	private String getMealPrice(Element meal) {
 		Elements mealPrices = meal.getElementsByClass(StudentRestaurantHTMLMapper.MEAL_PRICE_CLASS);
-		Element mealPrice = mealPrices.get(0);
-		
-		return mealPrice.text();
+		if(!mealPrices.isEmpty()) {
+			Element mealPrice = mealPrices.get(0);
+			return mealPrice.text();
+		}
+		return "Price Unknown";
 	}
 
 }
