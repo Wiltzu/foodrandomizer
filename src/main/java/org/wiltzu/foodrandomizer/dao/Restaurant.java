@@ -36,10 +36,13 @@ public class Restaurant {
 		StringBuilder builder = new StringBuilder();
 		
 		for(Meal meal : meals) {
-			builder.append(meal + "\n");
+			builder.append(meal);
+			if(meals.iterator().hasNext()) {
+				builder.append("\n");
+			}
 		}
 		
-		return name;
+		return name + "\n" + "Meals: " + "\n" + builder;
 	}
 	
 	

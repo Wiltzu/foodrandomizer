@@ -3,7 +3,6 @@ package org.wiltzu.foodrandomizer;
 import java.net.URL;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.wiltzu.foodrandomizer.dao.Restaurant;
@@ -29,6 +28,10 @@ public class StudentRestaurantHTMLMapperTest extends TestCase {
 	public void testMapHTML() {
 		List<Restaurant> restaurants = restaurantHTMLMapper.mapHTML(url);
 		assertNotNull(restaurants);
+		
+		for(Restaurant restaurant : restaurants) {
+			assertNotNull(restaurant.toString());
+		}
 	}
 	
 

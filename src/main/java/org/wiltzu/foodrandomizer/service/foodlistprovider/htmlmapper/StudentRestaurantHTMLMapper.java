@@ -18,7 +18,7 @@ public class StudentRestaurantHTMLMapper implements HTMLMapper<Restaurant> {
 	
 	private static final String RESTAURANT_CLASS = "restaurant";
 	private static final String RESTAURANT_NAME_CLASS = "restaurantName";
-	private static final String MEALS_CLASS = "meals";
+	private static final String MEAL_CLASS = "meal";
 	private static final String MEAL_NAME_CLASS = "mealName";
 	private static final String MEAL_PRICE_CLASS = "mealPrice";
 	
@@ -60,7 +60,7 @@ public class StudentRestaurantHTMLMapper implements HTMLMapper<Restaurant> {
 	private List<Meal> getMeals(Element restaurant) {
 		List<Meal> mealList = new ArrayList<Meal>();
 		
-		Elements meals = restaurant.getElementsByClass(StudentRestaurantHTMLMapper.MEALS_CLASS);
+		Elements meals = restaurant.getElementsByClass(StudentRestaurantHTMLMapper.MEAL_CLASS);
 		for(Element meal: meals) {
 			String mealName = getMealName(meal); 
 			String mealPrice = getMealPrice(meal);
