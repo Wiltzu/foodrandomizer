@@ -12,8 +12,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.core.io.Resource;
 import org.wiltzu.foodrandomizer.service.foodlistprovider.ResourceHelper.ResourceLoaderHelper;
+import org.wiltzu.foodrandomizer.service.foodlistprovider.htmlmapper.HTMLMapper;
 
-public class StudentHTMLFoodListProvider implements FoodListProvider {
+public class StudentHTMLFoodListProvider implements HTMLfoodListProvider {
 
 	private String location;
 	private ResourceLoaderHelper resourceLoaderHelper;
@@ -43,21 +44,34 @@ public class StudentHTMLFoodListProvider implements FoodListProvider {
 		Document doc;
 		try {
 			doc = Jsoup.parse(resource.getURL(), timeoutMillis);
-			//if(doc.hasClass("restaurant")) {
-				System.out.print("oh yeah!!");
-				Elements restaurants = doc.getElementsByClass("restaurant");
-				Element restaurant = restaurants.get(0);
-				System.out.println(restaurant.toString());
-			//}
-			System.out.println(resource.toString());
+			Elements restaurants = doc.getElementsByClass("restaurant");
+			Element restaurant = restaurants.get(0);
+			Elements rNames = restaurant.getElementsByClass("restaurantName");
+			Element rName = rNames.get(0);
+			Elements meals = restaurant.getElementsByClass("meals");
+			Element meal = meals.get(0);
+			Elements mealNames = meal.getElementsByClass("mealName");
+			Element mealName = mealNames.get(0);
+			Elements mealPrices = meal.getElementsByClass("mealPrice");
+			Element mealPrice = mealPrices.get(0);
+			
+	
+			System.out.println(rName.text());
+			System.out.println(mealName.text());
+			System.out.println(mealPrice.text());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		
 		
 		return null;
+	}
+
+	@Override
+	public <T> void setHTMLmapper(HTMLMapper<T> htmlmapper) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

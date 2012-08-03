@@ -25,7 +25,7 @@ public class StudentHTMLFoodListProviderTest extends TestCase {
 	public void testGetFoodList() {
 	List<String> foodList = studentFoodListProvider.getFoodList();
 	List<String> expected = new ArrayList<String>();
-	expected.add("makaroonilaatikko, 2,60 (Delica)");
+	expected.add("Hampurilainen, 2,60 (Assarin ullakko)");
 	assertEquals(expected, foodList);
 		
 
