@@ -36,6 +36,11 @@
 		<property name="taytteidenLKM" value="4"/>
 	</bean>
 	
+	<bean name="studentFoodRandomizerService" 
+	class="org.wiltzu.foodrandomizer.service.StudentFoodRandomizerService">
+		<property name="foodListProvider" ref="studentFoodListProviderURL"/>
+	</bean>
+	
 	<bean name="pizzaFoodRandomizerServiceEmpty" class="org.wiltzu.foodrandomizer.service.PizzaFoodRandomizerService">
 	</bean>
 	
