@@ -1,6 +1,5 @@
 package org.wiltzu.foodrandomizer;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -24,9 +23,10 @@ public class StudentHTMLFoodListProviderTest extends TestCase {
 
 	public void testGetFoodList() {
 	List<String> foodList = studentFoodListProvider.getFoodList();
-	List<String> expected = new ArrayList<String>();
-	expected.add("Hampurilainen, 2,60 (Assarin ullakko)");
-	assertEquals(expected, foodList);
+	//List<String> expected = new ArrayList<String>();
+	//expected.add("Hampurilainen, 2,60 (Assarin ullakko)");
+	String expected = "Hampurilainen, 2.60 (Assarin ullakko)";
+	assertEquals(expected, foodList.get(0));
 		
 
 	}

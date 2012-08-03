@@ -26,9 +26,14 @@ public class Restaurant {
 		this.meals = meals;
 	}
 	
-	public String getMealAsText (Meal meal) {
-		Meal searchedMeal = meals.get(meals.indexOf(meal));
-		return searchedMeal.toString() + " (" + this.name + ")";
+	public String getMealAsText (int index) {
+		try {
+			  Meal searchedMeal = meals.get(index);
+			  return searchedMeal.toString() + " (" + this.name + ")";
+		} catch(IndexOutOfBoundsException e) {
+			e.printStackTrace();
+		}
+		return "ERROR: meals list's index not found";
 	}
 
 	@Override

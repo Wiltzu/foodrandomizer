@@ -19,9 +19,16 @@
 	    <property name="resourceLoaderHelper" ref="resourceLoaderHelper"/>
 	</bean>
 		
-	<bean name="studentFoodListProvider" class="org.wiltzu.foodrandomizer.service.foodlistprovider.StudentHTMLFoodListProvider">
+	<bean name="studentFoodListProviderURL" class="org.wiltzu.foodrandomizer.service.foodlistprovider.StudentHTMLFoodListProvider">
 		<property name="location" value="http://murkinat.appspot.com"/>
 	    <property name="resourceLoaderHelper" ref="resourceLoaderHelper"/>
+	    <property name="htmlMapper" ref="studentRestaurantHTMLMapper"/>
+	</bean>
+	
+	<bean name="studentFoodListProvider" class="org.wiltzu.foodrandomizer.service.foodlistprovider.StudentHTMLFoodListProvider">
+		<property name="location" value="./StudentFoodTest.html"/>
+	    <property name="resourceLoaderHelper" ref="resourceLoaderHelper"/>
+	    <property name="htmlMapper" ref="studentRestaurantHTMLMapper"/>
 	</bean>
 	
 	<bean name="pizzaFoodRandomizerService" class="org.wiltzu.foodrandomizer.service.PizzaFoodRandomizerService">

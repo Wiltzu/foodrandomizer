@@ -4,13 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+
+import org.wiltzu.foodrandomizer.dao.Restaurant;
 import org.wiltzu.foodrandomizer.service.foodlistprovider.ResourceHelper.ResourceLoaderHelper;
 import org.wiltzu.foodrandomizer.service.foodlistprovider.htmlmapper.HTMLMapper;
 
@@ -18,6 +15,7 @@ public class StudentHTMLFoodListProvider implements HTMLfoodListProvider {
 
 	private String location;
 	private ResourceLoaderHelper resourceLoaderHelper;
+	private HTMLMapper<Restaurant> htmlMapper;
 
 	@Override
 	public void setLocation(String location) {
@@ -36,42 +34,38 @@ public class StudentHTMLFoodListProvider implements HTMLfoodListProvider {
 	}
 	
 	private List<String> parseFoodsFromHTML () {
-		
-		List<String> foodList = new ArrayList<String>();
 		Resource resource = resourceLoaderHelper.getResource(location);
-		int timeoutMillis = 30000;
-		
-		Document doc;
+		List<String> foods = new ArrayList<String>();
 		try {
-			doc = Jsoup.parse(resource.getURL(), timeoutMillis);
-			Elements restaurants = doc.getElementsByClass("restaurant");
-			Element restaurant = restaurants.get(0);
-			Elements rNames = restaurant.getElementsByClass("restaurantName");
-			Element rName = rNames.get(0);
-			Elements meals = restaurant.getElementsByClass("meals");
-			Element meal = meals.get(0);
-			Elements mealNames = meal.getElementsByClass("mealName");
-			Element mealName = mealNames.get(0);
-			Elements mealPrices = meal.getElementsByClass("mealPrice");
-			Element mealPrice = mealPrices.get(0);
+			List<Restaurant> restaurants;
+			if(resource instanceof ClassPathResource) {
+				restaurants = htmlMapper.mapHTML(resource.getFile());
+			}
+			else {
+				restaurants = htmlMapper.mapHTML(resource.getURL());
+			}
+			for(Restaurant restaurant : restaurants) {
+				
+				int size = restaurant.getMeals().size();
+				
+				for(int i = 0; i < size; i++) {
+					foods.add(restaurant.getMealAsText(i));
+				}
+			}
+			return foods;
 			
-	
-			System.out.println(rName.text());
-			System.out.println(mealName.text());
-			System.out.println(mealPrice.text());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		
-		
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public <T> void setHTMLmapper(HTMLMapper<T> htmlmapper) {
-		// TODO Auto-generated method stub
+	public <T> void setHtmlMapper(HTMLMapper<T> htmlMapper) {
 		
+		this.htmlMapper = (HTMLMapper<Restaurant>) htmlMapper;
 	}
 
 }

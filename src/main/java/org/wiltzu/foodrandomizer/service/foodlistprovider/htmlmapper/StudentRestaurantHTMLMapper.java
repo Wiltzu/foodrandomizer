@@ -1,5 +1,6 @@
 package org.wiltzu.foodrandomizer.service.foodlistprovider.htmlmapper;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,25 +24,51 @@ public class StudentRestaurantHTMLMapper implements HTMLMapper<Restaurant> {
 	private static final String MEAL_PRICE_CLASS = "mealPrice";
 	
 	@Override
-	public List<Restaurant> mapHTML(URL url) {
+	public List<Restaurant> mapHTML(File file) {
 		
-		String rName;
-		List<Restaurant> restaurantList = new ArrayList<Restaurant>();;
+		List<Restaurant> restaurantList = new ArrayList<Restaurant>();
 		
 		try {
-			doc = Jsoup.parse(url, HTMLMapper.CONNECTION_TIMEOUT);
-			Elements restaurants = getRestaurants();
-			
-			for(Element restaurant: restaurants) {
-				rName = getRestaurantName(restaurant);
-				List<Meal> meals = getMeals(restaurant);
-				Restaurant restaurantInstance = new Restaurant(rName, meals);
-				restaurantList.add(restaurantInstance);
-			}	
+			doc = Jsoup.parse(file, "ISO-8859-1");
+			restaurantList = mapData();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
+		return restaurantList;
+		
+	}
+	
+	@Override
+	public List<Restaurant> mapHTML(URL url) {
+		
+		List<Restaurant> restaurantList = new ArrayList<Restaurant>();
+		
+		try {
+			doc = Jsoup.parse(url, HTMLMapper.CONNECTION_TIMEOUT);
+			restaurantList = mapData();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return restaurantList;
+	}
+	
+	private List<Restaurant> mapData() {
+		String rName;
+		List<Restaurant> restaurantList = new ArrayList<Restaurant>();
+		
+		Elements restaurants = getRestaurants();
+		
+		for(Element restaurant: restaurants) {
+			rName = getRestaurantName(restaurant);
+			List<Meal> meals = getMeals(restaurant);
+			Restaurant restaurantInstance = new Restaurant(rName, meals);
+			restaurantList.add(restaurantInstance);
+		}
+		
 		return restaurantList;
 	}
 

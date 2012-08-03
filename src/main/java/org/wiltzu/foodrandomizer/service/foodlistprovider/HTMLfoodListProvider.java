@@ -4,5 +4,5 @@ import org.wiltzu.foodrandomizer.service.foodlistprovider.htmlmapper.HTMLMapper;
 
 public interface HTMLfoodListProvider extends FoodListProvider {
 
-	public <T> void setHTMLmapper(HTMLMapper<T> htmlmapper);
+	public <T> void setHtmlMapper(HTMLMapper<T> htmlMapper);
 }
