@@ -1,4 +1,4 @@
-package org.wiltzu.foodrandomizer.tests;
+package org.wiltzu.foodrandomizer;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -31,7 +31,7 @@ public class PizzaFoodRandomizerServiceTest extends TestCase {
 
 	public void testGetFood() {
 		assertNotSame("foodList is empty",pizzaFoodRandomizer.getFood());
-		assertEquals(new NullPointerException(), pizzaFoodRandomizerEmpty.getFood());
+		assertEquals("", pizzaFoodRandomizerEmpty.getFood());
 	}
 
 }

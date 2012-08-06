@@ -1,4 +1,4 @@
-package org.wiltzu.foodrandomizer.tests;
+package org.wiltzu.foodrandomizer;
 
 import java.net.URL;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.wiltzu.foodrandomizer.tests;
+package org.wiltzu.foodrandomizer;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
