@@ -16,25 +16,20 @@ public class StudentRestaurantHTMLMapperTest extends TestCase {
 	StudentRestaurantHTMLMapper restaurantHTMLMapper;
 	private URL url;
 
-	
 	public StudentRestaurantHTMLMapperTest() {
-		
+
 		ctx = new ClassPathXmlApplicationContext("test-spring.xml");
-		restaurantHTMLMapper = (StudentRestaurantHTMLMapper) ctx.getBean("studentRestaurantHTMLMapper");
+		restaurantHTMLMapper = (StudentRestaurantHTMLMapper) ctx
+				.getBean("studentRestaurantHTMLMapper");
 		url = (URL) ctx.getBean("url");
 	}
-	
-	
+
 	public void testMapHTML() {
 		List<Restaurant> restaurants = restaurantHTMLMapper.mapHTML(url);
 		assertNotNull(restaurants);
-		
-		for(Restaurant restaurant : restaurants) {
-			assertNotNull(restaurant.toString());
-		}
-	}
-	
 
-	
+		for (Restaurant restaurant : restaurants)
+			assertNotNull(restaurant.toString());
+	}
 
 }

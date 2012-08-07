@@ -111,7 +111,7 @@ public class StudentRestaurantHTMLMapper implements HTMLMapper<Restaurant> {
 			Element mealPrice = mealPrices.get(0);
 			return mealPrice.text();
 		}
-		return "Price Unknown";
+		return "Price is unknown";
 	}
 
 }
