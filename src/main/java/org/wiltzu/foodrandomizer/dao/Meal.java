@@ -2,8 +2,8 @@ package org.wiltzu.foodrandomizer.dao;
 
 public class Meal {
 
-	String name;
-	String price;
+	private String name;
+	private String price;
 
 	public Meal(String name, String price) {
 		setName(name);

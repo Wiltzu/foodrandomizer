@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Restaurant {
 
-	String name;
-	List<Meal> meals;
+	private String name;
+	private List<Meal> meals;
 
 	public Restaurant(String name, List<Meal> meals) {
 		setName(name);

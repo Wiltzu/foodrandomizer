@@ -38,7 +38,7 @@ public class PizzaFoodRandomizerService implements FoodRandomizerService {
 			for(int i = 1; i <= taytteidenLKM; i++) {
 				int arvottu = r.nextInt(listLength);
 				builder.append(foodList.get(arvottu));
-				if(i != (taytteidenLKM)) builder.append(", ");
+				if(i != (taytteidenLKM)) {builder.append(", ");}
 			}
 			return builder.toString();
 			
